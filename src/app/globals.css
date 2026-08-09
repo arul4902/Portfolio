@@ -2,26 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    /* Pure Black */
+    --foreground: #ffffff;
+    /* Pure White */
+    --accent: #f5f5f5;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  html {
+    scroll-behavior: auto;
+    background-color: var(--background);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv11", "ss01";
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--background);
+  }
+
+  /* Minimalist scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-space-grotesk), sans-serif;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Refined, luxury panels */
+  .glass-panel {
+    @apply bg-[#0f0f11]/80 backdrop-blur-2xl border border-white/[0.04] shadow-2xl;
+  }
+
+  .glass-panel-hover {
+    @apply transition-all duration-700 ease-out hover:bg-[#151518]/90 hover:border-white/10 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0, 0, 0, 0.5)];
+  }
+
+  .premium-text {
+    @apply text-white/90 font-medium tracking-tight;
+  }
+
+  .premium-border {
+    @apply border border-white-[0.03];
+  }
+
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+    transition: all 0.5s ease;
+  }
+
+  .text-outline:hover {
+    color: rgba(255, 255, 255, 0.1);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
   }
 }
